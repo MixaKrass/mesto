@@ -1,0 +1,9 @@
+.card__like {
+  background: url(../../../images/Vector\ \(2\).svg);
+  background-repeat: no-repeat;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  width: 22px;
+  height: 19px;
+}
