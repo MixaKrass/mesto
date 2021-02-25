@@ -10,6 +10,10 @@
   border: 1px solid #fff;
 }
 
+.profile__add:hover {
+  opacity: 0.6;
+}
+
 @media screen and (max-width: 768px) {
   .profile__add {
     width: 282px;
