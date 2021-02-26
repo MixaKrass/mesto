@@ -8,22 +8,22 @@
     <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="body">
-    <div class="page">
-      <header class="header">
-        <img src="images/logo.svg" alt="логотип" class="header__logo">
-      </header>
+  <div class="page">
+    <header class="header">
+      <img src="images/header/logo.svg" alt="логотип" class="header__logo">
+    </header>
 
     <div class="container">  
       <main>
         <section class="profile">
           <div class="profile__image">
-            <img src="images/image.svg" alt="аватар" class="profile__avatar">
+            <img src="images/profile/image.svg" alt="аватар" class="profile__avatar">
             <div>
               <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit"></button>
               </div>
-                <p class="profile__about">Исследователь океана</p>
+              <p class="profile__about">Исследователь океана</p>
             </div>
           </div>
           <button type="button" class="profile__add"></button>
@@ -31,35 +31,19 @@
 
         <ul class="cards">
           <li class="card">
-              <img src="images/card/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="card__photo">
-                <div class="card__info">
-                  <h2 class="card__title">Карачаевск</h2>
-                  <button type="button" class="card__like"></button>
-                </div>
-              </li>
-
-          <li class="card">
-            <img src="images/card/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="card__photo">
-              <div class="card__info">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button type="button" class="card__like"></button>
-              </div>
-          </li>
-
-          <li class="card">
-            <img src="images/card/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="card__photo">
-              <div class="card__info">
-                <h2 class="card__title">Домбай</h2>
-                <button type="button" class="card__like"></button>
-              </div>
+            <img src="images/card/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="card__photo">
+            <div class="card__info">
+              <h2 class="card__title">Карачаевск</h2>
+              <button type="button" class="card__like"></button>
+            </div>
           </li>
 
           <li class="card">
             <img src="images/card/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="card__photo">
-              <div class="card__info">
-                <h2 class="card__title">Гора Эльбрус</h2>
-                <button type="button" class="card__like"></button>
-              </div>
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button type="button" class="card__like"></button>
+            </div>
           </li>
 
           <li class="card">
@@ -68,35 +52,51 @@
               <h2 class="card__title">Домбай</h2>
               <button type="button" class="card__like"></button>
             </div>
-        </li>
+          </li>
 
-        <li class="card">
-          <img src="images/card/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="card__photo">
-          <div class="card__info">
-            <h2 class="card__title">Карачаево-Ч...</h2>
-            <button type="button" class="card__like"></button>
-          </div>
-        </li>
-      </ul>
+          <li class="card">
+            <img src="images/card/kirill-pershin-1404681-unsplash.jpg" alt="Гора Эльбрус" class="card__photo">
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img src="images/card/kirill-pershin-1556355-unsplash.jpg" alt="Домбай" class="card__photo">
+            <div class="card__info">
+              <h2 class="card__title">Домбай</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+
+          <li class="card">
+            <img src="images/card/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="card__photo">
+            <div class="card__info">
+              <h2 class="card__title">Карачаево-Ч...</h2>
+              <button type="button" class="card__like"></button>
+            </div>
+          </li>
+        </ul>
       </main>   
     </div>
                     
-      <footer class="footer">
-        <p class="footer__copyright">&copy; Mesto Russia</p>
-      </footer>
-    </div>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; Mesto Russia</p>
+    </footer>
+  </div>
 
-    <div class="popup">
-      <div class="popup__container">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popup__form">
-          <input type="text" class="popup__input" name="input-name" id="input__popup-name" value="">
-          <input type="text" class="popup__input" name="input-about" id="input__popup_about" value="">
-          <button type="submit" class="popup__button">Сохранить</button>
-        </form>
-        <button type="button" class="popup__closed"></button>
-      </div>
+  <div class="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="popup__form">
+        <input type="text" class="popup__input" name="input-name" id="input__popup-name" value="">
+        <input type="text" class="popup__input" name="input-about" id="input__popup-about" value="">
+        <button type="submit" class="popup__button">Сохранить</button>
+      </form>
+      <button type="button" class="popup__closed"></button>
     </div>
-  <script src="./javascript/javascript.js"></script>
+  </div>
+<script src="./javascript/javascript.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@ function openPopup() {
 }
 editButton.addEventListener('click', openPopup);
 
+
 /* Закрытие popup */
 function closePopup() {
   popup.classList.remove('popup_opened');
@@ -28,4 +29,4 @@ function formSubmitHandler(evt) {
   aboutProfile.textContent = aboutInput.value;
   closePopup();
 }
-formElement.addEventListener('submit', formSubmitHandler); 
+form.addEventListener('submit', formSubmitHandler); 
