@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   background-position: center;
   outline: none;
+  margin-bottom: 7px;
 }
 
 .profile__edit:hover {

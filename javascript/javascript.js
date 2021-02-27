@@ -13,14 +13,14 @@ function openPopup() {
   nameInput.value = nameProfile.textContent;
   aboutInput.value = aboutProfile.textContent;
 }
-editButton.addEventListener('click', openPopup);
+
 
 
 /* Закрытие popup */
 function closePopup() {
   popup.classList.remove('popup_opened');
 }
-closeButton.addEventListener('click', closePopup);
+
 
 /* Редактирование */
 function formSubmitHandler(evt) {
@@ -30,3 +30,5 @@ function formSubmitHandler(evt) {
   closePopup();
 }
 form.addEventListener('submit', formSubmitHandler); 
+editButton.addEventListener('click', openPopup); /* открытие */
+closeButton.addEventListener('click', closePopup); /* закрытие */

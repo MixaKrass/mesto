@@ -1,5 +1,5 @@
 .profile__add {
-  background-image: url(../../../images/Vector\ \(1\).svg);
+  background-image: url(../../../images/Vector_add.svg);
   width: 150px;
   height: 50px;
   background-color: unset;
@@ -7,7 +7,9 @@
   background-position: center;
   outline: none;
   box-sizing: border-box;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
+  border-radius: 2px;
+
 }
 
 .profile__add:hover {
@@ -16,6 +18,7 @@
 
 @media screen and (max-width: 768px) {
   .profile__add {
+    background-image: url(../../../images/Vector_add_small.svg);
     width: 282px;
   }
 }
