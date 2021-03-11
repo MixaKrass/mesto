@@ -105,10 +105,10 @@ const cards = initialCards.map(createCard);
 
 //добавляем на страницу
 function addNewCards () {
-  cardContainer.prepend(createCard(Card));
+  cardContainer.prepend(...cards);
 }
 
-addInitialCards ();
+addNewCards ();
 
 // добавление на страницу новой карточки
 function addCardForSumbitHandler (evt) {
