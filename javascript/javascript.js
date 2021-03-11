@@ -9,7 +9,7 @@ let form = document.querySelector('#form-profile') /* попап по форме
 let SaveButton = document.querySelector('#save-popup-profile'); // кнопка сохранения
 
 // форма добавления карточек
-const popupCard = document.querySelector('#popup-card'); // форма
+let popupCard = document.querySelector('#popup-card'); // форма
 let CardOpenButton = document.querySelector('.profile__add'); // кнопка добавления карточки
 let CardCloseButton = document.querySelector('.popup__closed'); // кнопка закрытия
 let CardInputName = document.querySelector('#input__popup-CardName'); // 1 значение
@@ -39,7 +39,7 @@ closeButton.addEventListener('click', function () {
   closePopup(popup)
 })
 
-cardOpenButton.addEventListener('click', function () {
+СardOpenButton.addEventListener('click', function () {
   openPopup(popupCard)
 })
 
@@ -47,17 +47,6 @@ CardCloseButton.addEventListener('click', function () {
   closePopup(popupCard)
 })
 
-
-/* Редактирование */
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  nameProfile.textContent = nameInput.value;
-  aboutProfile.textContent = aboutInput.value;
-  closePopup();
-}
-form.addEventListener('submit', formSubmitHandler); 
-editButton.addEventListener('click', openPopup); /* открытие */
-closeButton.addEventListener('click', closePopup); /* закрытие */
 
 
 
@@ -82,6 +71,65 @@ function like (card) {
   });
 }
 
+
+ ..Редактирование 
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  nameProfile.textContent = nameInput.value;
+  aboutProfile.textContent = aboutInput.value;
+  closePopup();
+}
+form.addEventListener('submit', formSubmitHandler); 
+editButton.addEventListener('click', openPopup); // открытие 
+closeButton.addEventListener('click', closePopup); // закрытие 
+
+
+function crossclosePopup () {
+  closeBTN.forEach(function(btn) {
+    btn.addEventListener('click', (x) => 
+    closePopup(x.target.closest('.popup')));
+  });
+}
+crossclosePopup();
+
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+// форма добавления карточки
+function addcardform (evt) {
+  evt.preventDefault();
+  const card = createCard({name: CardInputName.value, link: CardInputImg.value});
+  cardsContainer.prepend(card);
+  closePopup();
+  ardInputNam.value ='';
+  CardInputImg.value ='';
+}
 
 
 
