@@ -101,23 +101,29 @@ function createCard(Card){
   return newCard;
 }
 
-initialCards.map(createCard);
+initialCards.forEach ((item) => {
+  addNewCards(
+  createCard(item)
+  );
+  });
 
 //добавляем на страницу
 function addNewCards (element) {
-  cardContainer.prepend(...cards);
+  cardContainer.prepend(element)
 }
 
-addNewCards ();
+
 
 // добавление на страницу новой карточки
 function addCardForSumbitHandler (evt) {
   evt.preventDefault();
   const Card = createCard({name: inputCardAddName.value, link: inputCardAddPhoto.value});
   addNewCards (Card);
+  closePopup(popupCard);
   inputCardAddPhoto.value ='';
   inputCardAddName.value ='';
 }
+SavePopupCard.addEventListener('submit', addCardForSumbitHandler); 
 
 
 /*
