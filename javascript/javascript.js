@@ -12,8 +12,8 @@ let SaveButton = document.querySelector('#save-popup-profile'); // кнопка 
 let popupCard = document.querySelector('#popup-card'); // форма
 let CardOpenButton = document.querySelector('.profile__add'); // кнопка добавления карточки
 let CardCloseButton = document.querySelector('#CardClosePopup'); // кнопка закрытия
-let CardInputName = document.querySelector('#input__popup-CardName'); // 1 значение
-let CardInputImg = document.querySelector('#input__popup-CardImg'); // 2 значение 
+let inputCardAddName = document.querySelector('#input__popup-CardName'); // 1 значение
+let inputCardAddPhoto = document.querySelector('#input__popup-CardImg'); // 2 значение 
 let SavePopupCard = document.querySelector('#save-popup-card'); // Кнопка сохранения
 let formCard = document.querySelector('#form-card');
 
