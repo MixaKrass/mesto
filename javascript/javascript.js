@@ -123,7 +123,7 @@ function addCardForSumbitHandler (evt) {
   inputCardAddPhoto.value ='';
   inputCardAddName.value ='';
 }
-SavePopupCard.addEventListener('submit', addCardForSumbitHandler); 
+formCard.addEventListener('submit', addCardForSumbitHandler); 
 
 
 /*
