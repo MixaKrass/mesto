@@ -21,6 +21,21 @@ let formCard = document.querySelector('#form-card');
 let cardTemplate = document.querySelector('#templatecard').content; //получаем заготовки для карточек
 let cardContainer = document.querySelector('.cards'); //контейнер с карточками
 
+// открываем картинку
+let popupBig = document.querySelector('#popup-big'); // попак-картинка
+let popupImage = document.querySelector('.popup__image'); // изображение в попапе
+let popupFigcaption = document.querySelector('.popup__figcaption'); //подпись изображения
+
+/*
+//на весь экран
+function BigPopup (photo) {
+  photo.addEventListener('click', () => {
+    popupImage.src = photo.src;
+    popupFigcaption.textContent = photo.alt;
+    openPopup(popupBig);
+  });
+}
+*/
 
 
 // открытие попапов
@@ -51,6 +66,8 @@ CardCloseButton.addEventListener('click', function () {
   closePopup(popupCard)
 })
 
+
+
 // Редактирование 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -59,6 +76,22 @@ function formSubmitHandler(evt) {
   closePopup(popupProfile);
 }
 form.addEventListener('submit', formSubmitHandler); 
+
+// кнопка лайка
+function addlike (card) {
+  let buttonLike = card.querySelector('.card__like');
+  buttonLike.addEventListener('click', (e) => {
+    e.target.classList.toggle('card__like_active');
+  });
+}
+
+//удаление
+function deleteCard (card) {
+  const remove = card.querySelector('.card__delete');
+  remove.addEventListener('click', (evt) => {
+    evt.target.closest('.card').remove();
+  });
+}
 
 //массив карточек
 const initialCards = [
@@ -97,6 +130,9 @@ function createCard(Card){
   const cardPhoto = newCard.querySelector('.card__photo');
   cardTitle.textContent = Card.name;
   cardPhoto.src = Card.link;
+
+  addlike(newCard);
+  deleteCard(newCard);
   
   return newCard;
 }
@@ -125,29 +161,3 @@ function addCardForSumbitHandler (evt) {
 }
 formCard.addEventListener('submit', addCardForSumbitHandler); 
 
-
-/*
-// кнопка лайка
-function like (card) {
-  let buttonLike = card.querySelector('.card__like');
-  buttonLike.addEventListener('click', (e) => {
-    e.target.classList.toggle('card__like_active');
-  });
-}
-
-//удаление
-function deleteCard (card) {
-  const remove = card.querySelector('.card__delete');
-  remove.addEventListener('click', (evt) => {
-    evt.target.closest('.card').remove();
-  });
-}
-
-
-
-
-
-
-
-cardContainer.prepend(Card);
-*/
