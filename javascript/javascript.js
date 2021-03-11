@@ -1,4 +1,4 @@
-let popup = document.querySelector('#popup-profile'); /*поиск формы */
+let popupProfile = document.querySelector('#popup-profile'); /*поиск формы */
 let editButton = document.querySelector('.profile__edit'); /*Кнопка редактирования*/
 let closeButton = document.querySelector('.popup__closed'); /*Кнопка закрытия*/
 let nameInput = document.querySelector('#input__popup-name'); /* 1 значение  */
@@ -32,11 +32,11 @@ function closePopup (popup) {
 editButton.addEventListener('click', function () {
   nameInput.value = nameProfile.textContent;
   aboutInput.value = aboutProfile.textContent;
-  openPopup(popup)
+  openPopup(popupProfile)
 })
 
 closeButton.addEventListener('click', function () {
-  closePopup(popup)
+  closePopup(popupProfile)
 })
 
 СardOpenButton.addEventListener('click', function () {
