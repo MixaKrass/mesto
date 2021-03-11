@@ -17,8 +17,8 @@ let CardInputImg = document.querySelector('#input__popup-CardImg'); // 2 зна�
 let SavePopupCard = document.querySelector('#save-popup-card'); // Кнопка сохранения
 let formCard = document.querySelector('#form-card');
 
-//temlate
-let cardTemlate = document.querySelector('#templatecard').content; //получаем заготовки для карточек
+//template
+let cardTemplate = document.querySelector('#templatecard').content; //получаем заготовки для карточек
 let cardContainer = document.querySelector('.cards'); //контейнер с карточками
 
 
@@ -88,9 +88,11 @@ const initialCards = [
   }
 ];
 
+
+
 //добавляем карточку
 function createCard(Card){
-  const newCard = cardTemlate.querySelector('.card').cloneNode(true);
+  const newCard = cardTemplate.querySelector('.card').cloneNode(true);
   const cardTitle = newCard.querySelector('.card__title');
   const cardPhoto = newCard.querySelector('.card__photo');
   cardTitle.textContent = Card.name;
@@ -116,15 +118,6 @@ function addCardForSumbitHandler (evt) {
   inputCardAddName.value ='';
 }
 
-/*
-editButton.addEventListener('click', editProfile);
-CardOpenButton.addEventListener('click', () => openPopup(popupCard));
-formCard.addEventListener('sumbit', addcardform);
-form.addEventListener('sumbit', formSubmitHandler);
-
-
-// форма добавления карточки
-
 
 /*
 // кнопка лайка
@@ -135,23 +128,12 @@ function like (card) {
   });
 }
 
-
-
-
-
-
-// форма добавления карточки
-function addcardform (evt) {
-  evt.preventDefault();
-  const card = createCard({name: CardInputName.value, link: CardInputImg.value});
-  cardsContainer.prepend(card);
-  closePopup();
-  ardInputNam.value ='';
-  CardInputImg.value ='';
+//удаление
+function deleteCard (card) {
+  const remove = card.querySelector('.card__delete');
+  remove.addEventListener('click', (evt) => {
+    evt.target.closest('.card').remove();
+  });
 }
-
-
-
-
 
 */
