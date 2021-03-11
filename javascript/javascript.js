@@ -101,10 +101,11 @@ function createCard(Card){
   return newCard;
 }
 
+const cards = initialCards.map(createCard);
+
 //добавляем на страницу
-function addInitialCards () {
-  const cards = initialCards.map(createCard);
-  cardContainer.prepend(...cards);
+function addNewCards () {
+  cardContainer.prepend(createCard(Card));
 }
 
 addInitialCards ();
@@ -112,7 +113,7 @@ addInitialCards ();
 // добавление на страницу новой карточки
 function addCardForSumbitHandler (evt) {
   evt.preventDefault();
-  const Card = createCard({name: inputCardAddPhoto.value ='', link: inputCardAddName.value =''});
+  const Card = createCard({name: inputCardAddName.value, link: inputCardAddPhoto.value});
   cardContainer.prepend(Card);
   inputCardAddPhoto.value ='';
   inputCardAddName.value ='';
