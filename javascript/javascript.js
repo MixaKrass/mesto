@@ -1,4 +1,4 @@
-let popup = document.querySelector('.popup'); /*поиск формы */
+let popup = document.querySelector('#popup-profile'); /*поиск формы */
 let editButton = document.querySelector('.profile__edit'); /*Кнопка редактирования*/
 let closeButton = document.querySelector('.popup__closed'); /*Кнопка закрытия*/
 let nameInput = document.querySelector('#input__popup-name'); /* 1 значение  */
@@ -20,12 +20,12 @@ let formCard = document.querySelector('#form-card');
 
 
 // открытие попапов
-function openPopup () {
+function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
 
 /* Закрытие popup */
-function closePopup () {
+function closePopup (popup) {
   popup.classList.remove('popup_opened');
 }
 
