@@ -39,7 +39,7 @@ closeButton.addEventListener('click', function () {
   closePopup(popupProfile)
 })
 
-СardOpenButton.addEventListener('click', function () {
+CardOpenButton.addEventListener('click', function () {
   openPopup(popupCard)
 })
 
