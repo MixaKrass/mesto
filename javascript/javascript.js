@@ -1,6 +1,6 @@
 let popupProfile = document.querySelector('#popup-profile'); /*поиск формы */
 let editButton = document.querySelector('.profile__edit'); /*Кнопка редактирования*/
-let closeButton = document.querySelector('.popup__closed'); /*Кнопка закрытия*/
+let closeButton = document.querySelector('#ProfileClosePopup'); /*Кнопка закрытия*/
 let nameInput = document.querySelector('#input__popup-name'); /* 1 значение  */
 let aboutInput = document.querySelector('#input__popup-about'); /*2 значение */
 let nameProfile = document.querySelector('.profile__name'); /* поиск имени */
@@ -11,12 +11,16 @@ let SaveButton = document.querySelector('#save-popup-profile'); // кнопка 
 // форма добавления карточек
 let popupCard = document.querySelector('#popup-card'); // форма
 let CardOpenButton = document.querySelector('.profile__add'); // кнопка добавления карточки
-let CardCloseButton = document.querySelector('.popup__closed'); // кнопка закрытия
+let CardCloseButton = document.querySelector('#CardClosePopup'); // кнопка закрытия
 let CardInputName = document.querySelector('#input__popup-CardName'); // 1 значение
 let CardInputImg = document.querySelector('#input__popup-CardImg'); // 2 значение 
 let SavePopupCard = document.querySelector('#save-popup-card'); // Кнопка сохранения
 let formCard = document.querySelector('#form-card');
-//template
+
+//temlate
+let cardTemlate = document.querySelector('#templatecard').content; //получаем заготовки для карточек
+let cardContainer = document.querySelector('.cards'); //контейнер с карточками
+
 
 
 // открытие попапов
@@ -47,52 +51,16 @@ CardCloseButton.addEventListener('click', function () {
   closePopup(popupCard)
 })
 
-
-
-
-// функция закрытия новая
-
-/*
-editButton.addEventListener('click', editProfile);
-CardOpenButton.addEventListener('click', () => openPopup(popupCard));
-formCard.addEventListener('sumbit', addcardform);
-form.addEventListener('sumbit', formSubmitHandler);
-
-
-// форма добавления карточки
-
-
-/*
-// кнопка лайка
-function like (card) {
-  let buttonLike = card.querySelector('.card__like');
-  buttonLike.addEventListener('click', (e) => {
-    e.target.classList.toggle('card__like_active');
-  });
-}
-
-
- ..Редактирование 
+// Редактирование 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   nameProfile.textContent = nameInput.value;
   aboutProfile.textContent = aboutInput.value;
-  closePopup();
+  closePopup(popupProfile);
 }
 form.addEventListener('submit', formSubmitHandler); 
-editButton.addEventListener('click', openPopup); // открытие 
-closeButton.addEventListener('click', closePopup); // закрытие 
 
-
-function crossclosePopup () {
-  closeBTN.forEach(function(btn) {
-    btn.addEventListener('click', (x) => 
-    closePopup(x.target.closest('.popup')));
-  });
-}
-crossclosePopup();
-
-
+//массив карточек
 const initialCards = [
   {
     name: 'Архыз',
@@ -120,6 +88,57 @@ const initialCards = [
   }
 ];
 
+//добавляем карточку
+function createCard(Card){
+  const newCard = cardTemlate.querySelector('.card').cloneNode(true);
+  const cardTitle = newCard.querySelector('.card__title');
+  const cardPhoto = newCard.querySelector('.card__photo');
+  cardTitle.textContent = Card.name;
+  cardPhoto.src = Card.link;
+  
+  return newCard;
+}
+
+//добавляем на страницу
+function addInitialCards () {
+  const cards = initialCards.map(createCard);
+  cardContainer.prepend(...cards);
+}
+
+addInitialCards ();
+
+// добавление на страницу новой карточки
+function addCardForSumbitHandler (evt) {
+  evt.preventDefault();
+  const Card = createCard({name: inputCardAddPhoto.value ='', link: inputCardAddName.value =''});
+  cardContainer.prepend(Card);
+  inputCardAddPhoto.value ='';
+  inputCardAddName.value ='';
+}
+
+/*
+editButton.addEventListener('click', editProfile);
+CardOpenButton.addEventListener('click', () => openPopup(popupCard));
+formCard.addEventListener('sumbit', addcardform);
+form.addEventListener('sumbit', formSubmitHandler);
+
+
+// форма добавления карточки
+
+
+/*
+// кнопка лайка
+function like (card) {
+  let buttonLike = card.querySelector('.card__like');
+  buttonLike.addEventListener('click', (e) => {
+    e.target.classList.toggle('card__like_active');
+  });
+}
+
+
+
+
+
 
 // форма добавления карточки
 function addcardform (evt) {
@@ -133,11 +152,6 @@ function addcardform (evt) {
 
 
 
- // Открытие popup profile
-function editProfile() {
-  nameInput.value = nameProfile.textContent;
-  aboutInput.value = aboutProfile.textContent;
-  openPopup();
-}
+
 
 */

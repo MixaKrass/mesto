@@ -29,6 +29,7 @@
         </section>
 
         <ul class="cards">
+         <!--
           <li class="card">
             <img src="images/card/kirill-pershin-1088404-unsplash.jpg" alt="Карачаевск" class="card__photo">
             <div class="card__info">
@@ -76,7 +77,7 @@
               <h2 class="card__title">Карачаево-Ч...</h2>
               <button type="button" class="card__like"></button>
             </div>
-          </li>
+          </li> -->
         </ul>
       </main>   
                     
@@ -93,7 +94,7 @@
         <input type="text" class="popup__input" name="input-about" id="input__popup-about" value="">
         <button type="submit" class="popup__button" id="save-popup-profile" >Сохранить</button>
       </form>
-      <button type="button" class="popup__closed"></button>
+      <button type="button" class="popup__closed" id="ProfileClosePopup"></button>
     </div>
   </div>
 
@@ -105,21 +106,21 @@
         <input type="text" class="popup__input" name="InputImgCard" id="input__popup-CardImg" value="" placeholder="ссылка на картинку" required>
         <button type="submit" class="popup__button" id="save-popup-card">Создать</button>
       </form>
-      <button type="button" class="popup__closed"></button>
+      <button type="button" class="popup__closed" id="CardClosePopup"></button>
     </div>
   </div>
   
-  <!--
-  <template>
+  
+  <template id="templatecard">
     <li class="card">
+      <button type="button" class="card__delete"></button>
       <img class="card__photo" src="#" alt="#">
       <div class="card__info">
         <h2 class="card__title"></h2>
         <button type="button" class="card__like"></button>
-        <button type="button" class="card__delete"></button>
       </div>
     </li>
-  </template> -->
+  </template> 
 
 <script src="./javascript/javascript.js"></script>
 </body>
