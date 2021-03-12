@@ -22,21 +22,25 @@ let cardTemplate = document.querySelector('#templatecard').content; //получ
 let cardContainer = document.querySelector('.cards'); //контейнер с карточками
 
 // открываем картинку
-let popupBig = document.querySelector('#popup-big'); // попак-картинка
+let popupBig = document.querySelector('#popupbig'); // попак-картинка
 let popupImage = document.querySelector('.popup__image'); // изображение в попапе
 let popupFigcaption = document.querySelector('.popup__figcaption'); //подпись изображения
 
-/*
+let BigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
+
 //на весь экран
 function BigPopup (photo) {
   photo.addEventListener('click', () => {
     popupImage.src = photo.src;
     popupFigcaption.textContent = photo.alt;
+    popupImage.alt = photo.alt;
     openPopup(popupBig);
   });
 }
-*/
 
+BigClosePopup.addEventListener('click', function () {
+  closePopup(popupBig)
+})
 
 // открытие попапов
 function openPopup (popup) {
@@ -65,6 +69,7 @@ CardOpenButton.addEventListener('click', function () {
 CardCloseButton.addEventListener('click', function () {
   closePopup(popupCard)
 })
+
 
 
 
@@ -130,7 +135,9 @@ function createCard(Card){
   const cardPhoto = newCard.querySelector('.card__photo');
   cardTitle.textContent = Card.name;
   cardPhoto.src = Card.link;
+  cardPhoto.alt = Card.name;
 
+  BigPopup(cardPhoto);
   addlike(newCard);
   deleteCard(newCard);
   
@@ -149,7 +156,6 @@ function addNewCards (element) {
 }
 
 
-
 // добавление на страницу новой карточки
 function addCardForSumbitHandler (evt) {
   evt.preventDefault();
@@ -160,4 +166,3 @@ function addCardForSumbitHandler (evt) {
   inputCardAddName.value ='';
 }
 formCard.addEventListener('submit', addCardForSumbitHandler); 
-
