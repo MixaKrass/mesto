@@ -28,6 +28,22 @@ const popupFigcaption = document.querySelector('.popup__figcaption'); //подп
 
 const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
 
+
+//закрытие на оверлэй
+const closePopupOverlay = (evt) => {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopup(evt.target);
+  }
+}
+
+// закрытие на ESC
+const closePopupEscape = (evt) => {
+  const openPopup = document.querySelector('.popup_opened');
+  if (evt.key === "Escape") {
+    closePopup(openPopup);
+  }
+}
+
 //на весь экран
 function bigPopup (photo) {
   photo.addEventListener('click', () => {
@@ -43,13 +59,17 @@ bigClosePopup.addEventListener('click', function () {
 })
 
 // открытие попапов
-function openPopup (popup) {
+const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+  popup.addEventListener('mousedown', closePopupOverlay);
+  document.addEventListener('keydown', closePopupEscape);
 }
 
 /* Закрытие popup */
-function closePopup (popup) {
+const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('mousedown', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEscape);
 }
 
 editButton.addEventListener('click', function () {
@@ -170,3 +190,4 @@ function hasInvalidInput (inputList) {
   return !inputElement.validity.valid;
 }); 
 }
+
