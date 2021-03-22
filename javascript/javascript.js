@@ -71,8 +71,6 @@ cardCloseButton.addEventListener('click', function () {
 })
 
 
-
-
 // Редактирование 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -166,3 +164,9 @@ function addCardForSumbitHandler (evt) {
   inputCardAddName.value ='';
 }
 formCard.addEventListener('submit', addCardForSumbitHandler); 
+
+function hasInvalidInput (inputList) {
+  return inputList.some((inputElement) => {
+  return !inputElement.validity.valid;
+}); 
+}
