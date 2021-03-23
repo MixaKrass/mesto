@@ -24,7 +24,7 @@ const toggleButtonState=(inputlist, buttonElement) => {
   }
 };
 
-const showInputError = (formElement, inputElement) => {
+const showInputError = (formElement, inputElement, errorElement) => {
   const errorElement = formElement.querySelector('#${inputElement.id}-error');
   inputElement.classList.add(inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -32,7 +32,7 @@ const showInputError = (formElement, inputElement) => {
 };
 
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, errorElement) => {
   const errorElement = formElement.querySelector('#${inputElement.id}-error');
   inputElement.classList.remove(inputErrorClass);
   errorElement.textContent = '';
@@ -74,4 +74,4 @@ formList.forEach((formElement) => {
 );
 };
 
-enableValidation (objects);
+enableValidation ();
