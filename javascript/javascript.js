@@ -212,10 +212,10 @@ const toggleButtonState=(inputlist, buttonElement, objects) => {
   }
 };
 
-const showInputError = (formElement, inputElement, objects, errorMessage) => {
+const showInputError = (formElement, inputElement, objects) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(objects.inputErrorClass);
-  errorElement.textContent = errorMessage;
+  errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add(objects.errorClass);
 };
 
