@@ -196,23 +196,23 @@ const objects = {
 }  
 
 
-const hasInvalidInput = (inputlist, objects) => {
+const hasInvalidInput = (inputlist) => {
   return inputlist.some((inputElement) => {
     return !inputElement.validity.valid
   });
 };
 
-const toggleButtonState=(inputlist, buttonElement, inactiveButtonClass, objects) => {
+const toggleButtonState=(inputlist, buttonElement, objects) => {
   if (hasInvalidInput(inputlist)) {
-    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.classList.add(objects.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
   } else {
-    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.classList.remove(objects.inactiveButtonClass);
     buttonElement.removeAttribute('disabled');
   }
 };
 
-const showInputError = (formElement, inputElement, objects) => {
+const showInputError = (formElement, inputElement, objects, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(objects.inputErrorClass);
   errorElement.textContent = errorMessage;
@@ -241,10 +241,10 @@ const setInputListeners=(formElement, objects) => {
 
   inputlist.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      checkInput(formElement, inputElement);
-      toggleButtonState(inputlist, buttonElement);
+      checkInput(formElement, inputElement, objects);
+      toggleButtonState(inputlist, buttonElement, objects);
     });
-    toggleButtonState(inputlist, buttonElement);
+    toggleButtonState(inputlist, buttonElement, objects);
   }
   );
 };
