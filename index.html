@@ -52,9 +52,9 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="popup__form" id="form-profile">
         <input type="text" class="popup__input" name="input-name" id="input__popup-name" value="" minlength="2" maxlength="40" required>
-        <span id="input__popup-name-error" class="error"></span>
+        <span id="input__popup-name-error" class="popup__error"></span>
         <input type="text" class="popup__input" name="input-about" id="input__popup-about" value="" minlength="2" maxlength="200" required>
-        <span id="input__popup-about-error" class="error"></span>
+        <span id="input__popup-about-error" class="popup__error"></span>
         <button type="submit" class="popup__button" id="save-popup-profile" >Сохранить</button>
       </form>
       <button type="button" class="popup__closed" id="ProfileClosePopup"></button>
@@ -66,9 +66,9 @@
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form" name="popup__form" id="form-card">
         <input type="text" class="popup__input" name="InputNameCard" id="input__popup-CardName" value="" minlength="2" maxlength="30" placeholder="название места" required>
-        <span id="input__popup-CardName-error" class="error"></span>
+        <span id="input__popup-CardName-error" class="popup__error"></span>
         <input type="url" class="popup__input" name="InputImgCard" id="input__popup-CardImg" value="" placeholder="ссылка на картинку" required>
-        <span id="input__popup-CardImg-error" class="error"></span>
+        <span id="input__popup-CardImg-error" class="popup__error"></span>
         <button type="submit" class="popup__button" id="save-popup-card">Создать</button>
       </form>
       <button type="button" class="popup__closed" id="CardClosePopup"></button>
