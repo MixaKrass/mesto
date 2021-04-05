@@ -28,6 +28,30 @@ const popupFigcaption = document.querySelector('.popup__figcaption'); //подп
 
 const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
 
+const popupForm = document.querySelector('.popup__form');
+
+const objects = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}  
+
+
+// import Card from "./card.js" 
+
+import FormValidator from "./validate.js"
+
+const formList = Array.from(popupForm);
+formList.forEach((formElement) => {
+  new FormValidator(objects, formElement).enableValidation()
+});
+
+
+
+
 
 //закрытие на оверлэй
 const closePopupOverlay = (evt) => {
@@ -163,9 +187,7 @@ function createCard(Card){
 }
 
 initialCards.forEach ((item) => {
-  addNewCards(
-  createCard(item)
-  );
+  addNewCards(createCard(item));
   });
 
 //добавляем на страницу
