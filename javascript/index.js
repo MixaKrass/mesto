@@ -28,7 +28,7 @@ const popupFigcaption = document.querySelector('.popup__figcaption'); //подп
 
 const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
 
-const popupForm = document.querySelector('.popup__form');
+const popupForm = document.querySelectorAll('.popup__form');
 
 const objects = {
   formSelector: '.popup__form',

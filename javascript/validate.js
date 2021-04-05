@@ -26,7 +26,6 @@ export default class FormValidator {
     inputElement.classList.add(this._object.inputErrorClass);
     errorElement.textContent = inputElement.validationMessage;
     errorElement.classList.add(this._object.errorClass);
-    console.log(showInputError)
   };
   
   
