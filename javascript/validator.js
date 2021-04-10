@@ -59,7 +59,14 @@ export default class FormValidator {
     );
   };
   
-  
+  //удаление ошибок
+deleteErrors() {
+  const errorsSpan = this._formElement.querySelectorAll(this._validationConfig.inputSelector);
+  const errorsInput = this._formElement.querySelectorAll(this._validationConfig.inputError);
+  errorsSpan.forEach((evt) => evt.classList.remove(this._validationConfig.errorClass))
+  errorsInput.forEach((evt) => evt.classList.remove(this._validationConfig.inputError))
+}
+
   enableValidation () {
     this._setInputListeners();
   }

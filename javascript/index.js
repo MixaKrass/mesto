@@ -27,6 +27,7 @@ const cardContainer = document.querySelector('.cards'); //контейнер с 
 const popupForm = document.querySelectorAll('.popup__form');
 
 const popupCardSaveButton = document.querySelector('#save-popup-card'); // кнопка сохранения форм
+const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -34,19 +35,14 @@ const validationConfig = {
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__error_visible',
+  inputError: 'popup__error'
 }  
 
 const addCardFormValidator = new FormValidator (validationConfig, formAddCard);
 const editProfileFormValidator = new FormValidator (validationConfig, formEditProfile);
 
-//удаление ошибок
-const deleteErrors = (popup) => {
-  const errorsSpan = popup.querySelectorAll('.popup__error_visible')
-  const errorsInput = popup.querySelectorAll('.popup__input_type_error')
-  errorsSpan.forEach((evt) => evt.textContent = '')
-  errorsInput.forEach((evt) => evt.classList.remove('popup__input_type_error'))
-}
+
 
 
 //закрытие на оверлэй
@@ -69,10 +65,12 @@ const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   popup.addEventListener('mousedown', closePopupOverlay);
   document.addEventListener('keydown', closePopupEscape);
+}
+
+// состояние кнопки
+function buttonCondition() {
   popupCardSaveButton.setAttribute('disabled', 'disabled');
   popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
-  editProfileFormValidator.enableValidation();
-  addCardFormValidator.enableValidation();
 }
 
 /* Закрытие popup */
@@ -80,13 +78,14 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('mousedown', closePopupOverlay);
   document.removeEventListener('keydown', closePopupEscape);
-  deleteErrors(popup);
   formAddCard.reset();
 }
 
 editButton.addEventListener('click', function () {
   nameInput.value = nameProfile.textContent;
   aboutInput.value = aboutProfile.textContent;
+  editProfileFormValidator.enableValidation();
+  editProfileFormValidator.deleteErrors();
   openPopup(popupProfile)
 })
 
@@ -95,11 +94,17 @@ closeEditProfilePopupButton.addEventListener('click', function () {
 })
 
 openPopupCardButton.addEventListener('click', function () {
+  addCardFormValidator.enableValidation();
+  addCardFormValidator.deleteErrors();
   openPopup(popupCard)
 })
 
 closeAddCardPopupButton.addEventListener('click', function () {
   closePopup(popupCard)
+})
+
+bigClosePopup.addEventListener('click', function () {
+  closePopup(popupBig);
 })
 
 // Редактирование 
@@ -128,16 +133,13 @@ function addCardFormSubmitHandler (evt) {
   const card = createCard({name: inputCardAddName.value, link: inputCardAddPhoto.value}); 
     cardContainer.prepend(card)
   closePopup(popupCard);
+  buttonCondition();
   formAddCard.reset()
 }
 
 formAddCard.addEventListener('submit', addCardFormSubmitHandler); 
 
  
- const formList = Array.from(popupForm);
- formList.forEach((formElement) => {
-  new FormValidator(validationConfig, formElement).enableValidation()
- });
 
 
  
