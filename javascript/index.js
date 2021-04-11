@@ -28,6 +28,7 @@ const popupForm = document.querySelectorAll('.popup__form');
 
 const popupCardSaveButton = document.querySelector('#save-popup-card'); // кнопка сохранения форм
 const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
+const popupBig = document.querySelector('#popupbig'); // попап-картинка
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -36,13 +37,13 @@ const validationConfig = {
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
-  inputError: 'popup__error'
+  inputError: '.popup__error'
 }  
 
 const addCardFormValidator = new FormValidator (validationConfig, formAddCard);
 const editProfileFormValidator = new FormValidator (validationConfig, formEditProfile);
-
-
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
 
 
 //закрытие на оверлэй
@@ -78,27 +79,29 @@ const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('mousedown', closePopupOverlay);
   document.removeEventListener('keydown', closePopupEscape);
-  formAddCard.reset();
 }
 
+// открывает попап профиля
 editButton.addEventListener('click', function () {
   nameInput.value = nameProfile.textContent;
   aboutInput.value = aboutProfile.textContent;
-  editProfileFormValidator.enableValidation();
   editProfileFormValidator.deleteErrors();
   openPopup(popupProfile)
 })
 
+//закрывает попап профиля
 closeEditProfilePopupButton.addEventListener('click', function () {
   closePopup(popupProfile)
 })
 
+//открывает попап карточки
 openPopupCardButton.addEventListener('click', function () {
-  addCardFormValidator.enableValidation();
+  formAddCard.reset();
   addCardFormValidator.deleteErrors();
   openPopup(popupCard)
 })
 
+//закрывает попап карточки
 closeAddCardPopupButton.addEventListener('click', function () {
   closePopup(popupCard)
 })

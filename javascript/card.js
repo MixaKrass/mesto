@@ -2,7 +2,7 @@
 const popupBig = document.querySelector('#popupbig'); // попак-картинка
 const popupImage = document.querySelector('.popup__image'); // изображение в попапе
 const popupFigcaption = document.querySelector('.popup__figcaption'); //подпись изображения
-const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
+
 
 export default class Card {
   constructor(cardTemplate, cardData, openPopup, closePopup){
