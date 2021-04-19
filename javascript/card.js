@@ -1,14 +1,10 @@
-// открываем картинку
-const popupBig = document.querySelector('#popupbig'); // попак-картинка
-const popupImage = document.querySelector('.popup__image'); // изображение в попапе
-const popupFigcaption = document.querySelector('.popup__figcaption'); //подпись изображения
 
 
 export default class Card {
-  constructor(cardTemplate, cardData, openPopup){
+  constructor(cardTemplate, cardData, handleCardClick){
     this._cardTemplate = cardTemplate;
     this._cardData = cardData;
-    this._openPopup = openPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   //добавляем карточку
@@ -26,10 +22,9 @@ _setEventListeners(){
   //на весь экран
   const photo = this._element.querySelector('.card__photo')
   photo.addEventListener('click', () => {
-    popupImage.src = photo.src;
-    popupFigcaption.textContent = photo.alt;
-    popupImage.alt = photo.alt;
-    this._openPopup(popupBig);
+    this._handleCardClick.open(photo);
+    this._handleCardClick.setEventListeners()
+    
   });
 
 
