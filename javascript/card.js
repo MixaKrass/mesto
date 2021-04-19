@@ -5,11 +5,10 @@ const popupFigcaption = document.querySelector('.popup__figcaption'); //подп
 
 
 export default class Card {
-  constructor(cardTemplate, cardData, openPopup, closePopup){
+  constructor(cardTemplate, cardData, openPopup){
     this._cardTemplate = cardTemplate;
     this._cardData = cardData;
     this._openPopup = openPopup;
-    this._closePopup = closePopup;
   }
 
   //добавляем карточку

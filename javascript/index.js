@@ -3,6 +3,7 @@ import FormValidator from "./validator.js"
 
 
 
+
 const popupProfile = document.querySelector('#popup-profile'); /*поиск формы */
 const editButton = document.querySelector('.profile__edit'); /*Кнопка редактирования*/
 const closeEditProfilePopupButton = document.querySelector('#ProfileClosePopup'); /*Кнопка закрытия*/
@@ -119,11 +120,19 @@ function submitEditProfileForm(evt) {
 }
 formEditProfile.addEventListener('submit', submitEditProfileForm); 
  
+//Card
 function createCard (item) {
   const card = new Card(cardTemplate, item, openPopup, closePopup);
   const cardElement = card.getCard();
   return cardElement;
 }
+/*
+//Section 
+const renderCards = new Section ({
+  items: initialCards,
+  renderer: (element) => {}
+})
+*/
 
  initialCards.forEach(item => {
   const newcard = createCard(item);
