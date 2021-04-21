@@ -43,13 +43,77 @@ const validationConfig = {
   inputError: '.popup__error'
 }  
 
-const selectorsUserInfo = {
-  name: document.querySelector('.profile__name'),
-  about: document.querySelector('.profile__about')
+
+
+const userInfo = new UserInfo({nameProfile, aboutProfile,});
+
+const popupBigClass = new PopupWithImage(popupBig);
+const popupAdd = new PopupWithForm(popupCard, addCardFormSubmit);
+const popupEdit = new PopupWithForm(popupProfile, editProfileFormSubmit);
+
+//Validation
+const addCardFormValidator = new FormValidator (validationConfig, formAddCard);
+const editProfileFormValidator = new FormValidator (validationConfig, formEditProfile);
+editProfileFormValidator.enableValidation();
+addCardFormValidator.enableValidation();
+
+
+//рендер на страницу новой карточки
+function addCardFormSubmit (data) {
+  const newCard = new Card({name: data['input__popup-CardName'], link: data['input__popup-CardImg']}, cardsTemplate, popupBigClass);
+  const cardElement = newCard.getCard();
+  cardContainer.prepend(cardElement);
+  popupAdd.close();
+  popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
+  popupCardSaveButton.setAttribute('disabled', 'disabled');
 }
 
-const userInfo = new UserInfo(selectorsUserInfo);
-const popupBigClass = new PopupWithImage(popupBig);
+//открывает попап карточки
+openPopupCardButton.addEventListener('click', () => {
+  formAddCard.reset();
+  addCardFormValidator.enableValidation()
+  popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
+  popupCardSaveButton.setAttribute('disabled', 'disabled');
+  popupAdd.open();
+})
+
+
+
+
+//Section 
+const renderCards = new Section ({
+  items: initialCards,
+  renderer: (item) => {
+    const newCard = new Card(cardsTemplate, item, popupBigClass);
+    const cardElement = newCard.getCard();
+    renderCards.addItem(cardElement)
+  }},
+  cardContainer)
+
+renderCards.renderItems()
+
+//редактирование профиля
+function editProfileFormSubmit (data) {
+  userInfo.setUserInfo(data);
+  popupEdit.close();
+}
+
+// открывает попап профиля
+editButton.addEventListener('click', () => {
+  const userInformation = userInfo.getUserInfo();
+  nameInput.value = userInformation.name;
+  aboutInput.value = userInformation.about;
+  popupEdit.open();
+})
+ 
+popupEdit.setEventListeners();
+popupAdd.setEventListeners();
+popupBigClass.setEventListeners();
+
+/* 
+
+
+
 
 const popupAdd = new PopupWithForm(popupCard, inputsValue => {
   const newCard = new Card(cardsTemplate, inputsValue, popupBigClass).getCard()
@@ -64,42 +128,6 @@ const popupEdit = new PopupWithForm(popupProfile, inputsValue => {
 
 
 
-//Validation
-const addCardFormValidator = new FormValidator (validationConfig, formAddCard);
-const editProfileFormValidator = new FormValidator (validationConfig, formEditProfile);
-editProfileFormValidator.enableValidation();
-addCardFormValidator.enableValidation();
-
-
-
-//Section 
-const renderCards = new Section ({
-  items: initialCards,
-  renderer: (element) => {
-    const newCard = new Card(cardsTemplate, element, popupBigClass).getCard()
-    renderCards.addItem(newCard)
-  }},
-  cardContainer)
-
-renderCards.renderItems()
-
-// открывает попап профиля
-editButton.addEventListener('click', function () {
-  popupEdit.open()
-  popupEdit.setEventListeners()
-  const {name, about} = userInfo.getUserInfo()
-  nameInput.value = name;
-  aboutInput.value = about;
-})
- 
-//открывает попап карточки
-openPopupCardButton.addEventListener('click', function () {
-  popupAdd.open()
-  popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
-  popupCardSaveButton.setAttribute('disabled', 'disabled');
-})
-
-/* 
 //закрытие на оверлэй
 const closePopupOverlay = (evt) => {
   if (evt.target.classList.contains('popup_opened')) {
