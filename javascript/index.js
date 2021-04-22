@@ -60,7 +60,7 @@ addCardFormValidator.enableValidation();
 
 //рендер на страницу новой карточки
 function addCardFormSubmit (data) {
-  const newCard = new Card({name: data['input__popup-CardName'], link: data['input__popup-CardImg']}, cardsTemplate, popupBigClass);
+  const newCard = new Card(cardsTemplate, {name: data['InputNameCard'], link: data['InputImgCard']},  popupBigClass);
   const cardElement = newCard.getCard();
   cardContainer.prepend(cardElement);
   popupAdd.close();
@@ -111,8 +111,6 @@ popupAdd.setEventListeners();
 popupBigClass.setEventListeners();
 
 /* 
-
-
 
 
 const popupAdd = new PopupWithForm(popupCard, inputsValue => {

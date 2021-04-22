@@ -25,13 +25,6 @@ export default class Card {
   return this._element;
 }
 
-/*
-getCard(){
-this._element = this._createCard();
-
-return this._element;
-}
-*/ 
 
 _setEventListeners(){
   //на весь экран
