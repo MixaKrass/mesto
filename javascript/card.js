@@ -1,22 +1,37 @@
 
 
 export default class Card {
-  constructor(cardTemplate, cardData, handleCardClick){
-    this._cardTemplate = cardTemplate;
+  constructor(cardsTemplate, cardData, handleCardClick){
+    this._cardTemplate = cardsTemplate;
     this._cardData = cardData;
     this._handleCardClick = handleCardClick;
   }
 
+  //делаем разметку для карточки
+  _getTemplate() {
+    const cardTemp = this._cardTemplate.querySelector('.card').cloneNode(true); 
+    return cardTemp;
+  }
+
   //добавляем карточку
- _createCard(){
-  const newCard = this._cardTemplate.querySelector('.card').cloneNode(true);
-  const cardTitle = newCard.querySelector('.card__title');
-  const cardPhoto = newCard.querySelector('.card__photo');
+ getCard(){
+  this._element = this._getTemplate();
+  this._setEventListeners();
+  const cardTitle = this._element.querySelector('.card__title');
+  const cardPhoto = this._element.querySelector('.card__photo');
   cardTitle.textContent = this._cardData.name;
   cardPhoto.src = this._cardData.link;
   cardPhoto.alt = this._cardData.name;
-  return newCard;
+  return this._element;
 }
+
+/*
+getCard(){
+this._element = this._createCard();
+
+return this._element;
+}
+*/ 
 
 _setEventListeners(){
   //на весь экран
@@ -41,11 +56,5 @@ _setEventListeners(){
   remove.addEventListener('click', (evt) => {
     evt.target.closest('.card').remove();
   });
-}
-
-getCard(){
-this._element = this._createCard();
-this._setEventListeners();
-return this._element;
 }
 }
