@@ -4,7 +4,7 @@ export default class Popup {
     this.close = this.close.bind(this)
   }
 
-  _handleEscClose = (evt) =>{
+  _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
       this.close()
   }}

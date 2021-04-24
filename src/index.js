@@ -1,14 +1,16 @@
-import PopupWithForm from ".javascript/popupWithForm.js"
-import PopupWithImage from ".javascript/popupWithImage.js"
-import Section from ".javascript/section.js"
-import Card from ".javascript/card.js" 
-import FormValidator from ".javascript/validator.js"
-import UserInfo from ".javascript/userInfo.js"
+import './pages/index.css'
+import {initialCards} from "./javascript/initial-cards.js"
+import PopupWithForm from "./javascript/popupWithForm.js"
+import PopupWithImage from "./javascript/popupWithImage.js"
+import Section from "./javascript/section.js"
+import Card from "./javascript/card.js" 
+import FormValidator from "./javascript/validator.js"
+import UserInfo from "./javascript/userInfo.js"
 
 
 const popupProfile = document.querySelector('#popup-profile'); /*поиск формы */
 const editButton = document.querySelector('.profile__edit'); /*Кнопка редактирования*/
-const closeEditProfilePopupButton = document.querySelector('#ProfileClosePopup'); /*Кнопка закрытия*/
+
 const nameInput = document.querySelector('#input__popup-name'); /* 1 значение  */
 const aboutInput = document.querySelector('#input__popup-about'); /*2 значение */
 const nameProfile = document.querySelector('.profile__name'); /* поиск имени */
@@ -18,9 +20,6 @@ const formEditProfile = document.querySelector('#form-profile') /* попап п
 // форма добавления карточек
 const popupCard = document.querySelector('#popup-card'); // форма
 const openPopupCardButton = document.querySelector('.profile__add'); // кнопка добавления карточки
-const closeAddCardPopupButton = document.querySelector('#CardClosePopup'); // кнопка закрытия
-const inputCardAddName = document.querySelector('#input__popup-CardName'); // 1 значение
-const inputCardAddPhoto = document.querySelector('#input__popup-CardImg'); // 2 значение 
 const formAddCard = document.querySelector('#form-card');
 
 //template
@@ -28,7 +27,6 @@ const cardsTemplate = document.querySelector('#templatecard').content; //пол�
 const cardContainer = document.querySelector('.cards'); //контейнер с карточками
 
 const popupCardSaveButton = document.querySelector('#save-popup-card'); // кнопка сохранения форм
-const bigClosePopup = document.querySelector('#ClosePopupBig'); // закрываем большой попап
 const popupBig = document.querySelector('#popupbig'); // попап-картинка
 
 
