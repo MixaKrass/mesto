@@ -1,45 +1,13 @@
-import './pages/index.css'
-import {initialCards} from "./javascript/initial-cards.js"
-import PopupWithForm from "./javascript/popupWithForm.js"
-import PopupWithImage from "./javascript/popupWithImage.js"
-import Section from "./javascript/section.js"
-import Card from "./javascript/card.js" 
-import FormValidator from "./javascript/validator.js"
-import UserInfo from "./javascript/userInfo.js"
-
-
-const popupProfile = document.querySelector('#popup-profile'); /*поиск формы */
-const editButton = document.querySelector('.profile__edit'); /*Кнопка редактирования*/
-
-const nameInput = document.querySelector('#input__popup-name'); /* 1 значение  */
-const aboutInput = document.querySelector('#input__popup-about'); /*2 значение */
-const nameProfile = document.querySelector('.profile__name'); /* поиск имени */
-const aboutProfile = document.querySelector('.profile__about'); /* поиск о себе */
-const formEditProfile = document.querySelector('#form-profile') /* попап по форме */
-
-// форма добавления карточек
-const popupCard = document.querySelector('#popup-card'); // форма
-const openPopupCardButton = document.querySelector('.profile__add'); // кнопка добавления карточки
-const formAddCard = document.querySelector('#form-card');
-
-//template
-const cardsTemplate = document.querySelector('#templatecard').content; //получаем заготовки для карточек
-const cardContainer = document.querySelector('.cards'); //контейнер с карточками
-
-const popupCardSaveButton = document.querySelector('#save-popup-card'); // кнопка сохранения форм
-const popupBig = document.querySelector('#popupbig'); // попап-картинка
-
-
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
-  inputError: '.popup__error'
-}  
+import './pages/index.css';
+import {initialCards, validationConfig, popupProfile, editButton, nameInput, aboutInput, nameProfile,
+aboutProfile, formEditProfile, popupCard, openPopupCardButton, formAddCard, cardsTemplate,
+cardContainer, popupCardSaveButton, popupBig} from "./utils/constants.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import Section from "./components/Section.js";
+import Card from "./components/Card.js" ;
+import FormValidator from "./components/Validator.js";
+import UserInfo from "./components/UserInfo.js";
 
 
 
@@ -55,11 +23,15 @@ const editProfileFormValidator = new FormValidator (validationConfig, formEditPr
 editProfileFormValidator.enableValidation();
 addCardFormValidator.enableValidation();
 
+function generateCard(item) {
+  const newCard = new Card(cardsTemplate, item,  popupBigClass);
+    const cardElement = newCard.getCard();
+  return cardElement;
+  }
 
 //рендер на страницу новой карточки
 function addCardFormSubmit (data) {
-  const newCard = new Card(cardsTemplate, {name: data['InputNameCard'], link: data['InputImgCard']},  popupBigClass);
-  const cardElement = newCard.getCard();
+  const cardElement = generateCard({name: data['InputNameCard'], link: data['InputImgCard']})
   cardContainer.prepend(cardElement);
   popupAdd.close();
   popupCardSaveButton.classList.add(validationConfig.inactiveButtonClass);
@@ -75,15 +47,11 @@ openPopupCardButton.addEventListener('click', () => {
   popupAdd.open();
 })
 
-
-
-
 //Section 
 const renderCards = new Section ({
   items: initialCards,
   renderer: (item) => {
-    const newCard = new Card(cardsTemplate, item, popupBigClass);
-    const cardElement = newCard.getCard();
+    const cardElement = generateCard(item);
     renderCards.addItem(cardElement)
   }},
   cardContainer)
