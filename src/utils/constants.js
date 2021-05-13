@@ -40,3 +40,4 @@ export const popupAvatarSelector = document.querySelector('.popup_avatar');
 
 export const popupImg = document.querySelector('.popup__image');
 export const popupImgText = document.querySelector('.popup__figcaption');
+export const likeButton = document.querySelector('.card__like'); // кнопка лайка

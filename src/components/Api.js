@@ -3,16 +3,20 @@ export default class Api {
     this._headers = confing.headers
   }
 
+  _checkError(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   //получаем список всех карточек
   getInitialCards() {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-23/cards', {
       method: 'GET',
       headers: this._headers
     })
-    .then(res => res.ok 
-    ? res.json() 
-    : Promise.reject(`Ошибка: ${res.status}`)
-    )
+    .then(this._checkError);
   }
  
 
@@ -22,10 +26,7 @@ export default class Api {
       method: 'GET',
       headers: this._headers
     })
-    .then(res => res.ok
-      ? res.json()
-      :Promise.reject(`Ошибка: ${res.status}`)
-      )
+    .then(this._checkError);
   }
 
   //обновляем аватар 
@@ -39,9 +40,7 @@ export default class Api {
       
     }
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-23/users/me/avatar`, newConfing)
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`))  
+    .then(this._checkError);
   }
 
   // удаляем карточку
@@ -51,9 +50,7 @@ export default class Api {
       method: 'DELETE',
     }
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-23/cards/${cardId}`, newConfing)
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`))  
+    .then(this._checkError);
   }
 
   // ставим лайк 
@@ -63,9 +60,7 @@ export default class Api {
       method: 'PUT', 
     }
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-23/cards/likes/${cardId}`, newConfing)
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`))  
+    .then(this._checkError);
   }
 
   // удаляем лайк
@@ -75,9 +70,7 @@ export default class Api {
       method: 'DELETE', 
     }
     return fetch(`https://mesto.nomoreparties.co/v1/cohort-23/cards/likes/${cardId}`, newConfing)
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`))
+    .then(this._checkError);
   }
 
   // отправляем информацию 
@@ -91,9 +84,7 @@ export default class Api {
       }),
     }
     return fetch('https://mesto.nomoreparties.co/v1/cohort-23/users/me', newConfing)
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`))
+    .then(this._checkError);
   }
 
   //отправляем информацию о пользователе на сервер
@@ -108,9 +99,7 @@ export default class Api {
       
   }
   return fetch('https://mesto.nomoreparties.co/v1/cohort-23/cards', newConfing)
-    .then(res => res.ok
-      ? res.json()
-      : Promise.reject(`Ошибка: ${res.status}`))
+  .then(this._checkError);
 }
 }
 

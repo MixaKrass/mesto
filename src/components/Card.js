@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardsTemplate, {myId, name, link, likes, owner, _id}, handleCardClick, removeCard, putLike, removeLike){
+  constructor(cardsTemplate, api, {myId, name, link, likes, owner, _id}, handleCardClick, removeCard, ){
     this._cardTemplate = cardsTemplate;
     this._myId = myId;
     this._name = name;
@@ -9,8 +9,7 @@ export default class Card {
     this._cardId = _id;
     this._handleCardClick = handleCardClick;
     this._removeCard = removeCard;
-    this._putLike = putLike;
-    this._removeLike = removeLike;
+    this._api = api;
   }
 
  
@@ -23,6 +22,7 @@ export default class Card {
   cardTitle.textContent = this._name;
   cardPhoto.src = this._link;
   cardPhoto.alt = this._name;
+
   // счётчик лайков
   cardTemp.querySelector('.card__likes-container').textContent = this._likes.length
   //отображаем активные лайки
@@ -38,15 +38,32 @@ export default class Card {
   return cardTemp;
 }
 
+_putLike() {
+  this._api.putLike(this._cardId)
+  .then((res) => {
+    this._element.querySelector('.card__likes-container').textContent = res.likes.length 
+    this._element.querySelector('.card__like').classList.toggle('card__like_active')
+  })
+  .catch(err => console.log(err))
+}
+
+_removeLike() {
+  this._api.removeLike(this._cardId)
+  .then((res) => {
+    this._element.querySelector('.card__likes-container').textContent = res.likes.length 
+    this._element.querySelector('.card__like').classList.toggle('card__like_active')
+  })
+  .catch(err => console.log(err))
+}
+
 
 _setEventListeners(){ 
-
   // кнопка лайка 
   const buttonLike = this._element.querySelector('.card__like'); 
-  buttonLike.addEventListener('click', () => 
+  buttonLike.addEventListener('click', () => {
     !buttonLike.classList.contains('card__like_active')
-    ? this._putLike(this._cardId)
-    : this._removeLike(this._cardId)
+    ? this._putLike()
+    : this._removeLike() }
 ); 
   
   //на весь экран 
