@@ -17,8 +17,5 @@ export default class PopupConfirm extends Popup {
     })
   }
   
-  close() {
-    super.close()
-    this._form.removeEventListener('submit', this._submitHandler)
-  }
+  /* на прошлом ревью перепутал и удалил не там метод close. из-за этого и получилась новая ошибка) */
 }

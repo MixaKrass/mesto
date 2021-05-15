@@ -1,5 +1,6 @@
 export default class Card {
-  constructor(cardsTemplate, api, {myId, name, link, likes, owner, _id}, handleCardClick, removeCard, ){
+  constructor(cardsTemplate, {myId, name, link, likes, owner, _id}, handleCardClick, 
+    removeCard, putLike, removeLike ){
     this._cardTemplate = cardsTemplate;
     this._myId = myId;
     this._name = name;
@@ -9,7 +10,8 @@ export default class Card {
     this._cardId = _id;
     this._handleCardClick = handleCardClick;
     this._removeCard = removeCard;
-    this._api = api;
+    this._putLike = putLike; 
+    this._removeLike = removeLike; 
   }
 
  
@@ -38,23 +40,10 @@ export default class Card {
   return cardTemp;
 }
 
-_putLike() {
-  this._api.putLike(this._cardId)
-  .then((res) => {
-    this._element.querySelector('.card__likes-container').textContent = res.likes.length 
-    this._element.querySelector('.card__like').classList.toggle('card__like_active')
-  })
-  .catch(err => console.log(err))
-}
-
-_removeLike() {
-  this._api.removeLike(this._cardId)
-  .then((res) => {
-    this._element.querySelector('.card__likes-container').textContent = res.likes.length 
-    this._element.querySelector('.card__like').classList.toggle('card__like_active')
-  })
-  .catch(err => console.log(err))
-}
+setLikesInfo(info) {
+  this._element.querySelector('.card__likes-container').textContent = info;
+  this._element.querySelector('.card__like').classList.toggle('card__like_active');
+};
 
 
 _setEventListeners(){ 
@@ -62,16 +51,13 @@ _setEventListeners(){
   const buttonLike = this._element.querySelector('.card__like'); 
   buttonLike.addEventListener('click', () => {
     !buttonLike.classList.contains('card__like_active')
-    ? this._putLike()
-    : this._removeLike() }
+    ? this._putLike(this._cardId, this)
+    : this._removeLike(this._cardId, this) }
 ); 
   
-  //на весь экран 
-  const photo = this._element.querySelector('.card__photo') 
-  photo.addEventListener('click', () => { 
-    this._handleCardClick.open(photo); 
-    this._handleCardClick.setEventListeners() 
-  }); 
+  //на весь экран
+  const cardPhoto = this._element.querySelector('.card__photo') 
+  cardPhoto.addEventListener('click', () => this._handleCardClick(this._name, this._link)); 
  
 //удаление 
   const remove = this._element.querySelector('.card__delete'); 

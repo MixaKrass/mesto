@@ -2,7 +2,7 @@ import './index.css';
 import Api from "../components/Api.js";
 import { validationConfig, popupProfile, saveNewAvatar,  editButton, nameInput, aboutInput,  nameProfile, aboutProfile, 
   avatarProfile, popupConfirm, popupEditAvatar, formEditProfile, popupCard, openPopupCardButton, formAddCard, cardsTemplate,
-cardContainer, likeButton, popupAvatarSelector, popupBig, popupImg, popupImgText} from "../utils/constants.js";
+cardContainer, popupAvatarSelector, popupBig, popupImg, popupImgText} from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
@@ -35,16 +35,23 @@ const api = new Api ({
   }
 });
 
+
+
 //работаем с профилем пользователя
 api.getUserInfo()
 .then(({name, about, avatar, _id}) => {
   const myId = _id
   userInfo.setUserInfo({name, about, avatar})
 
-  
+  function handleOpenCard (title, link) {
+    popupBigClass.open(title, link);
+  }
+
 // функция для создания карточки
 const createNewCard = (element) => {
-  const newCard = new Card(cardsTemplate, api, {myId, ...element},  popupBigClass,
+  const newCard = new Card(cardsTemplate, {myId, ...element}, handleOpenCard,
+
+   
 
 // удаление карточки 
     function removeCard (cardId) {
@@ -55,8 +62,26 @@ const createNewCard = (element) => {
         .then(() => newCard.remove())
         .catch(err => console.log(err))
       })
-    }
+    },
+
+    // ставим лайк 
+    function putLike(cardId, card){ 
+      api.putLike(cardId) 
+      .then((res) => { 
+        card.setLikesInfo(res.likes.length)
+      }) 
+      .catch(err => console.log(err)) 
+    }, 
+
+    function removeLike(cardId, card){ 
+      api.removeLike(cardId) 
+      .then((res) => { 
+        card.setLikesInfo(res.likes.length)
+      }) 
+      .catch(err => console.log(err)) 
+    } 
     
+
     ).getCard()
     return newCard
 }
